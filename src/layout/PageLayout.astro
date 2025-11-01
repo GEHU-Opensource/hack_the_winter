@@ -16,9 +16,9 @@ const { class: className, bodyClass, ...props } = Astro.props;
 	class:list={["mx-auto w-full md:max-w-4xl lg:max-w-5xl", bodyClass]}
 	{...props}
 >
-	<Header class="flex-none p-4" />
+	<Header class="flex-none p-4" transition:name="header" />
 
-	<Navigation />
+	<Navigation transition:name="nav" />
 
 	<main
 		class:list={[
@@ -30,8 +30,34 @@ const { class: className, bodyClass, ...props } = Astro.props;
 		<slot />
 	</main>
 
-	<Footer class="flex-none p-4" />
+	<Footer class="flex-none p-4" transition:name="footer" />
 </BaseLayout>
+
+<script>
+	import type { TransitionBeforePreparationEvent } from "astro:transitions/client";
+
+	document.addEventListener(
+		"astro:before-preparation",
+		(e: TransitionBeforePreparationEvent) => {
+			if (!e.sourceElement) return;
+
+			const rect = e.sourceElement.getBoundingClientRect();
+			const x = rect.left + rect.width / 2;
+			const y = rect.top + rect.height / 2;
+
+			sessionStorage.setItem("click-x", x.toString());
+			sessionStorage.setItem("click-y", y.toString());
+		},
+	);
+
+	document.addEventListener("astro:after-swap", () => {
+		const x = sessionStorage.getItem("click-x") || window.innerWidth / 2;
+		const y = sessionStorage.getItem("click-y") || window.innerHeight / 2;
+
+		document.documentElement.style.setProperty("--click-x", `${x}px`);
+		document.documentElement.style.setProperty("--click-y", `${y}px`);
+	});
+</script>
 
 <style>
 	html {
@@ -50,5 +76,30 @@ const { class: className, bodyClass, ...props } = Astro.props;
 		background-size: 256px 256px;
 		pointer-events: none;
 		z-index: -1;
+	}
+</style>
+
+<style is:global>
+	:root {
+		--click-x: 50%;
+		--click-y: 50%;
+	}
+
+	::view-transition-old(root) {
+		animation: none;
+	}
+
+	::view-transition-new(root) {
+		animation: hole 500ms ease-in;
+	}
+
+	@keyframes hole {
+		from {
+			clip-path: circle(0% at var(--click-x, 50%) var(--click-y, 50%));
+		}
+
+		to {
+			clip-path: circle(100% at var(--click-x, 50%) var(--click-y, 50%));
+		}
 	}
 </style>

@@ -18,7 +18,10 @@ const menus = [
 ];
 ---
 
-<nav class="w-full flex flex-row flex-wrap justify-between select-none">
+<nav
+	class="w-full flex flex-row flex-wrap justify-between select-none"
+	{...Astro.props}
+>
 	{
 		menus.map((menu) => (
 			<a

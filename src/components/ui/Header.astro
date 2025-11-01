@@ -31,11 +31,9 @@ const navigation = [
 		className,
 	]}
 	id="top"
+	{...Astro.props}
 >
 	<a href="/" class="relative font-angry tracking-wider italic text-2xl">
 		Hack The Winter
 	</a>
-	<!-- <nav class="hidden sm:flex flex-row gap-4">
-		{navigation.map((item) => <a href={item.href}>{item.title}</a>)}
-	</nav> -->
 </header>
