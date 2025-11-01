@@ -1,20 +1,31 @@
 ---
 import { Image } from "astro:assets";
 
-import Red from "@/assets/images/red.webp";
-import Blues from "@/assets/images/blues.webp";
-import Chuck from "@/assets/images/chuck.webp";
-import Matilda from "@/assets/images/matilda.webp";
-import Hal from "@/assets/images/hal.webp";
-import Bomb from "@/assets/images/bomb.webp";
+import Red from "@/assets/animated/red.webp";
+import StaticRed from "@/assets/animated/red_static.png";
+
+import Chuck from "@/assets/animated/chuck.webp";
+import StaticChuck from "@/assets/animated/chuck_static.png";
+
+import Blues from "@/assets/animated/blues.webp";
+import StaticBlues from "@/assets/animated/blues_static.png";
+
+import Stella from "@/assets/animated/stella.webp";
+import StaticStella from "@/assets/animated/stella_static.png";
+
+import Leonard from "@/assets/animated/leonard.webp";
+import StaticLeonard from "@/assets/animated/leonard_static.png";
+
+import Bomb from "@/assets/animated/bomb.webp";
+import StaticBomb from "@/assets/animated/bomb_static.png";
 
 const menus = [
-	{ title: "Home", src: Red, href: "/home/" },
-	{ title: "Timeline", src: Chuck, href: "/timeline/" },
-	{ title: "Rules", src: Blues, href: "/rules/" },
-	{ title: "FAQs", src: Matilda, href: "/faqs/" },
-	{ title: "Sponsor", src: Hal, href: "/sponsor/" },
-	{ title: "About", src: Bomb, href: "/about/" },
+	{ title: "Home", src: Red, cover: StaticRed, href: "/home/" },
+	{ title: "Timeline", src: Chuck, cover: StaticChuck, href: "/timeline/" },
+	{ title: "Rules", src: Blues, cover: StaticBlues, href: "/rules/" },
+	{ title: "FAQs", src: Stella, cover: StaticStella, href: "/faqs/" },
+	{ title: "Sponsor", src: Leonard, cover: StaticLeonard, href: "/sponsor/" },
+	{ title: "About", src: Bomb, cover: StaticBomb, href: "/about/" },
 ];
 ---
 
@@ -26,13 +37,28 @@ const menus = [
 		menus.map((menu) => (
 			<a
 				href={menu.href}
-				class="flex flex-col align-middle items-center mb-8"
+				class="flex flex-col align-middle items-center mb-8 group"
 			>
-				<Image
-					src={menu.src}
-					alt={`${menu.title} Image`}
-					class="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-contain"
-				/>
+				<div class="relative">
+					<Image
+						src={menu.src}
+						alt={`${menu.title} Image`}
+						class:list={[
+							"h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 object-contain",
+							"absolute top-0 left-0",
+							"invisible group-hover:visible group-focus-visible:visible",
+						]}
+					/>
+					<Image
+						src={menu.cover}
+						alt={`${menu.title} Image`}
+						class:list={[
+							"h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 object-contain",
+							"group-hover:invisible group-focus-visible:invisible",
+						]}
+					/>
+				</div>
+
 				<p class="text-center font-angry text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wider text-shadow-lg/50">
 					{menu.title}
 				</p>
