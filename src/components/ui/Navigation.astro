@@ -2,32 +2,38 @@
 const menus = [
 	{
 		title: "Home",
-		src: "/animated/red.webm",
+		webm: "/animated/red.webm",
+		hevc: "/animated/red.mp4",
 		href: "/home/",
 	},
 	{
 		title: "Timeline",
-		src: "/animated/chuck.webm",
+		webm: "/animated/chuck.webm",
+		hevc: "/animated/chuck.mp4",
 		href: "/timeline/",
 	},
 	{
 		title: "Rules",
-		src: "/animated/blues.webm",
+		webm: "/animated/blues.webm",
+		hevc: "/animated/blues.mp4",
 		href: "/rules/",
 	},
 	{
 		title: "FAQs",
-		src: "/animated/stella.webm",
+		webm: "/animated/stella.webm",
+		hevc: "/animated/stella.mp4",
 		href: "/faqs/",
 	},
 	{
 		title: "Sponsor",
-		src: "/animated/leonard.webm",
+		webm: "/animated/leonard.webm",
+		hevc: "/animated/leonard.mp4",
 		href: "/sponsor/",
 	},
 	{
 		title: "About",
-		src: "/animated/bomb.webm",
+		webm: "/animated/bomb.webm",
+		hevc: "/animated/bomb.mp4",
 		href: "/about/",
 	},
 ];
@@ -48,13 +54,14 @@ function isCurrentPage(href: string) {
 				class="flex flex-col align-middle items-center mb-8"
 			>
 				<video
-					src={menu.src}
 					muted
 					playsinline
 					preload="auto"
 					class="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 object-contain"
 					data-current={isCurrentPage(menu.href)}
 				>
+					<source src={menu.hevc} type='video/mp4; codecs="hvc1"' />
+					<source src={menu.webm} type="video/webm" />
 					Your browser does not support the video tag.
 				</video>
 
