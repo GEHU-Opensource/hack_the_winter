@@ -1,0 +1,37 @@
+---
+import FullHeightRow from "./FullHeightRow.astro";
+import { Image } from "astro:assets";
+
+interface Props {
+	image: ImageMetadata;
+	align: "left" | "right";
+}
+
+const { image, align } = Astro.props;
+---
+
+<FullHeightRow>
+	{
+		align === "right" && (
+			<div class="scroll-animate-left">
+				<slot />
+			</div>
+		)
+	}
+	<Image
+		src={image}
+		alt="Image"
+		class:list={[
+			"w-64 h-64 lg:w-96 lg:h-96 xl:w-128 xl:h-128 object-contain",
+			"animate-pulse-slow",
+			align === "left" ? "scroll-animate-left" : "scroll-animate-right",
+		]}
+	/>
+	{
+		align === "left" && (
+			<div class="scroll-animate-right">
+				<slot />
+			</div>
+		)
+	}
+</FullHeightRow>

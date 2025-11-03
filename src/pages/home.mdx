@@ -12,34 +12,105 @@ import Image from "astro/components/Image.astro";
 
 <h4 class="mt-0 text-center">(Angry Birds Edition)</h4>
 
-import Trio from "@/assets/images/trio_4.webp";
-
-{/* <Image
-    src={Trio}
-    alt="Angry Birds Trio"
-/> */}
-
 import Red from "@/assets/images/red/red_concerned.webp";
 
 <div class="w-full grid grid-cols-1 md:grid-cols-4 gap-5">
-    <div class="col-span-1 flex justify-center items-center">
+    <div class="col-span-1 flex flex-col justify-center items-center">
         <Image
             src={Red}
             alt="Red - The Angry Birds"
-            class="w-64 h-64 md:w-48 md:h-48 xl:w-64 xl:h-64 object-contain"
+            class="w-64 h-64 md:w-48 md:h-48 xl:w-64 xl:h-64 object-contain my-5!"
         />
+        <a 
+            target="_blank"
+            href="https://unstop.com/p/hack-the-winter-the-second-wave-angry-bird-edition-graphic-era-hill-university-gehu-bhimtal-1571242"
+			class="mt-8 px-6 py-3 bg-blue-600 text-white text-2xl font-angry rounded-lg hover:bg-blue-700 transition-all duration-300"
+        >Register</a>
     </div>
 
     <div class="col-span-3 flex justify-center items-center align-middle">
-        Hack The Winter - The Second Wave (Angry Bird Edition) is a 24 hour national-level hackathon aimed at encouraging innovation, creativity, and problem-solving among students and professionals. The hackathon will focus on solving real-world challenges through technology in domains such as sustainability, education, and smart automation.
+        
+        Hack The Winter - The Second Wave (Angry Bird Edition) is a 24 hour national-level hackathon 
+        aimed at encouraging innovation, creativity, and problem-solving among students and professionals. 
+        The hackathon will focus on solving real-world challenges through technology in domains such as 
+        sustainability, education, and smart automation.
+
     </div>
 </div>
+
+### Stages
+
+
+import Stages from "@/assets/page/home/stages.png";
+
+<Image
+    src={Stages}
+    alt="stages"
+    class="w-full h-auto my-5 object-contain"
+ />
+
+#### The Nest (Online)
+
+##### Where every idea is born. 
+
+Round 1 - Online Prototype Submission (Elimination)
+
+- Teams submit their ideas through the Unstop event portal, themes and problem statements will be given by us.
+- Submission must include: problem statement, proposed solution, tech stack, and prototype plan.
+- Duration: 7 days.
+- Evaluation based on innovation, feasibility, and impact.
+- Top 60% teams will advance to the next round.
+
+
+#### The Slingshot (Online)
+
+##### It's time to launch. 
+
+Round 2 - System Design Round (Elimination)
+
+- Ensuring teams can think out of the box, and know how they can scale their system.
+- This will be a round testing your cache, docker, load balancer, and LLD skills.
+- Duration: 5 days.
+- Evaluation based on innovation, feasibility, and impact.
+- Top 100 teams will advance to the physical hackathon.
+
+
+#### The Impact Zone (Offline) 
+
+##### The ultimate strike. 
+
+Round 3 - Onsite Hackathon (24 Hours)
+
+- Teams will work continuously for 24 hours at the venue.
+- Mentors and domain experts will be available for guidance.
+- Mid-review checkpoints will be conducted at the 6th, 12th, 18th, and 24th hours to track progress.
+- Teams must submit their final project along with a working demo and presentation.
+
 
 ### What to Expect?
 
 We use wedded high quality questions for hackathon which are challenging but in a good way. These questions / problem statements are important to showcase your skills for the actual hackathon. The problem statements will be given at the time of hackathon or pre-released a few hours prior.
 
+import Encourage from "@/assets/page/home/encourage.png";
+
+<Image
+    src={Encourage}
+    alt="encourage"
+    class="w-full h-auto my-5 object-contain"
+ />
+
+### Team Formation
+
 Teams are not restricted to a particular college, you can plan a reunion with all your friends from different colleges also.
+
+import Team from "@/assets/page/home/team.png";
+
+<Image
+    src={Team}
+    alt="team"
+    class="w-full h-auto my-5 object-contain"
+ />
+
 
 Only shortlisted teams will qualify for the on-site (physical) hackathon.
 

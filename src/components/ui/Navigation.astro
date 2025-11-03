@@ -36,6 +36,12 @@ const menus = [
 		hevc: "/animated/bomb.mp4",
 		href: "/about/",
 	},
+	{
+		title: "Contact",
+		webm: "/animated/ross.webm",
+		hevc: "/animated/ross.mp4",
+		href: "/contact/",
+	},
 ];
 
 function isCurrentPage(href: string) {
@@ -66,7 +72,13 @@ function isCurrentPage(href: string) {
 					Your browser does not support the video tag.
 				</video>
 
-				<p class="text-center font-angry text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-wider text-shadow-lg/50">
+				<p
+					class:list={[
+						"text-lg md:text-xl lg:text-2xl xl:text-3xl",
+						"text-center font-angry tracking-wider text-shadow-lg/50",
+						isCurrentPage(menu.href) ? "italic text-white/90" : "",
+					]}
+				>
 					{menu.title}
 				</p>
 			</a>
