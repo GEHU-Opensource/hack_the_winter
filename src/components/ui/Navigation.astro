@@ -56,9 +56,10 @@ function isCurrentPage(href: string) {
 				<video
 					muted
 					playsinline
-					preload="auto"
+					autoplay
 					class="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 object-contain"
 					data-current={isCurrentPage(menu.href)}
+					autoplay={isCurrentPage(menu.href) ? true : undefined}
 				>
 					<source src={menu.hevc} type='video/mp4; codecs="hvc1"' />
 					<source src={menu.webm} type="video/webm" />
@@ -74,26 +75,73 @@ function isCurrentPage(href: string) {
 </nav>
 
 <script>
+	const primeVideo = (video: HTMLVideoElement) => {
+		// Force source selection after DOM swap/cloning (Safari/Firefox)
+		try {
+			video.load();
+		} catch {}
+
+		const isCurrent = video.dataset.current === "true";
+
+		const paintFirstFrame = () => {
+			try {
+				// Safari sometimes won't paint frame 0; seek a tiny offset
+				if (video.currentTime === 0) video.currentTime = 0.001;
+			} catch {}
+		};
+
+		if (isCurrent) {
+			const start = () => {
+				video.play().catch(() => {});
+			};
+			if (video.readyState >= 2) {
+				start();
+			} else {
+				video.addEventListener("loadeddata", start, { once: true });
+			}
+		} else {
+			const onMeta = () => {
+				paintFirstFrame();
+				video.pause();
+			};
+			if (video.readyState >= 1) {
+				onMeta();
+			} else {
+				video.addEventListener("loadedmetadata", onMeta, {
+					once: true,
+				});
+			}
+		}
+	};
+
 	const setupNavVideoHover = () => {
 		const links = document.querySelectorAll("nav a");
 		links.forEach((link) => {
 			const video = link.querySelector("video");
 			if (!(video instanceof HTMLVideoElement)) return;
 
+			primeVideo(video);
+
+			const paintFirstFrame = () => {
+				try {
+					if (video.currentTime === 0) video.currentTime = 0.001;
+				} catch {}
+			};
+
 			const play = () => {
 				video.loop = true;
+				if (video.readyState < 2) {
+					try {
+						video.load();
+					} catch {}
+				}
 				video.play().catch(() => {});
 			};
 			const pause = () => {
 				video.loop = false;
 				video.pause();
+				paintFirstFrame();
 			};
-
-			if (link.querySelector("video")?.dataset.current === "true") {
-				video.play();
-			} else {
-				pause();
-			}
 
 			link.addEventListener("mouseenter", play);
 			link.addEventListener("mouseleave", pause);
