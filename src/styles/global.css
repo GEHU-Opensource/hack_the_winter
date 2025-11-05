@@ -8,6 +8,10 @@
 	--font-sans: var(--font-noto-sans);
 }
 
+img {
+	user-select: none;
+}
+
 /* Make markdown tables horizontally scrollable with a scrollbar */
 @layer base {
 	.prose table {
