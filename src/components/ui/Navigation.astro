@@ -47,11 +47,20 @@ const menus = [
 function isCurrentPage(href: string) {
 	return Astro.url.pathname === href;
 }
+
+interface Props {
+	class: string;
+}
+
+const { class: className, ...props } = Astro.props;
 ---
 
 <nav
-	class="w-full flex flex-row flex-wrap justify-evenly select-none"
-	{...Astro.props}
+	class:list={[
+		"w-full flex flex-row flex-wrap justify-evenly select-none",
+		className,
+	]}
+	{...props}
 >
 	{
 		menus.map((menu) => (

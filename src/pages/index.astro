@@ -15,6 +15,7 @@ import Chuck from "@/assets/images/chuck/chuck.webp";
 import Matilda from "@/assets/images/matilda.webp";
 import Hal from "@/assets/images/hal.webp";
 import Bomb from "@/assets/images/bomb/bomb.webp";
+import Navigation from "@/components/ui/Navigation.astro";
 ---
 
 <BaseLayout>
@@ -145,6 +146,9 @@ import Bomb from "@/assets/images/bomb/bomb.webp";
 				Learn More
 			</a>
 		</FullHeight>
+
+		<!-- Invisible navigation to preload videos -->
+		<Navigation class="invisible h-0 w-0" />
 	</main>
 </BaseLayout>
 
