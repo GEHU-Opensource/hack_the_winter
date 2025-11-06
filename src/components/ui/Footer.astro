@@ -35,7 +35,7 @@ const socials = [
 
 <footer
 	class:list={[
-		"flex flex-col items-center justify-center text-center mt-20",
+		"flex flex-col items-center justify-center text-center mt-20 gap-4",
 		className,
 	]}
 	{...Astro.props}
@@ -44,28 +44,33 @@ const socials = [
 		{
 			socials.map((social) => (
 				<a href={social.url} target="_blank">
-					<Icon name={social.name} class="h-8 w-8" />
+					<Icon
+						name={social.name}
+						class="h-8 w-8 text-white/75 hover:text-white transition-colors duration-200 ease-in-out"
+					/>
 				</a>
 			))
 		}
 	</div>
 
-	<p class="mt-2">
-		&copy; {new Date().getFullYear()} Hack The Winter. All rights reserved.
-	</p>
+	<div>
+		<p>
+			&copy; {new Date().getFullYear()} Hack The Winter. All rights reserved.
+		</p>
 
-	<p class="text-white/70 mb-2">
-		<span class="text-nowrap">We Code Club,</span>
-		<span class="text-nowrap">Graphic Era Hill University,</span>
-		<span class="text-nowrap">Bhimtal Campus</span>
-	</p>
+		<p class="text-white/75">
+			<span class="text-nowrap">We Code Club,</span>
+			<span class="text-nowrap">Graphic Era Hill University,</span>
+			<span class="text-nowrap">Bhimtal Campus</span>
+		</p>
+	</div>
 
-	<div class="flex flex-row align-middle justify-center items-center gap-6">
+	<div class="flex flex-row align-middle justify-between items-center gap-6">
 		<a href="https://www.wecode.college/" target="_blank">
 			<Wecode class="h-16 w-auto" />
 		</a>
 		<a href="https://gehu.ac.in/bhimtal/" target="_blank">
-			<Gehu class="h-25 w-auto" />
+			<Gehu class="h-16 w-auto" />
 		</a>
 	</div>
 
