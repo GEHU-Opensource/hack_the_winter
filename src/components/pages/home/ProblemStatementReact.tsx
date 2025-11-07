@@ -190,11 +190,10 @@ export default function ProblemStatementReact() {
 							setActiveTab("current");
 							setCurrentIndex(0);
 						}}
-						className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-angry text-normal md:text-xl lg:text-2xl xl:text-3xl transition-all duration-300 transform  ${
-							activeTab === "current"
+						className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-angry text-normal md:text-xl lg:text-2xl xl:text-3xl transition-all duration-300 transform  ${activeTab === "current"
 								? "bg-white text-red-900 shadow-inner"
 								: "bg-transparent text-white opacity-70 hover:opacity-100 cursor-pointer"
-						}`}
+							}`}
 					>
 						Current
 					</button>
@@ -204,11 +203,10 @@ export default function ProblemStatementReact() {
 							setActiveTab("past");
 							setCurrentIndex(0);
 						}}
-						className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-angry text-normal md:text-xl lg:text-2xl xl:text-3xl transition-all duration-300 transform ${
-							activeTab === "past"
+						className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-angry text-normal md:text-xl lg:text-2xl xl:text-3xl transition-all duration-300 transform ${activeTab === "past"
 								? "bg-white text-red-900 shadow-inner"
 								: "bg-transparent text-white opacity-70 hover:opacity-100 cursor-pointer"
-						}`}
+							}`}
 					>
 						Past
 					</button>
