@@ -5,7 +5,8 @@ bodyClass: "bg-black"
 ---
 
 import Image from "astro/components/Image.astro";
-import BirdHuntingGame from "@/components/BirdHuntingGame.tsx";
+
+import LeonardHappy from "@/assets/images/leonard_happy.png";
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-8">
     <div>
@@ -15,10 +16,8 @@ import BirdHuntingGame from "@/components/BirdHuntingGame.tsx";
     </div>
     <div class="flex justify-center">
         <Image
-            src="/secrate/The_Angry_Birds_Movie_Pig_Leonard_PNG_Transparent_Image.png"
+            src={LeonardHappy}
             alt="Leonard Pig"
-            width={400}
-            height={400}
             class="w-64 h-auto md:w-80 lg:w-96 object-contain"
         />
     </div>
@@ -26,14 +25,14 @@ import BirdHuntingGame from "@/components/BirdHuntingGame.tsx";
 
 ## Secret Games Section
 
+import StakePig from "@/assets/images/pigs/stake.png";
+
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-8">
     <div class="flex justify-center md:order-2">
         <Image
-            src="/secrate/2nd.png"
+            src={StakePig}
             alt="Bad Piggies Game"
-            width={400}
-            height={400}
-            class="w-96 h-auto md:w-[28rem] lg:w-[36rem] xl:w-[42rem] 2xl:w-[48rem] object-contain"
+            class="w-96 h-auto md:w-md lg:w-xl xl:w-2xl 2xl:w-3xl object-contain"
         />
     </div>
     <div class="md:order-1">
@@ -45,7 +44,9 @@ import BirdHuntingGame from "@/components/BirdHuntingGame.tsx";
     </div>
 </div>
 
+import BirdHunt from "@/components/pages/game/BirdHunt";
+
 <div class="-mt-4">
-    <BirdHuntingGame client:load />
+    <BirdHunt client:load />
 </div>
 
