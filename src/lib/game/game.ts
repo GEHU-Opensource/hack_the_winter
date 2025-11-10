@@ -210,22 +210,15 @@ class Game {
         const initial = [
             this.$createBird(this.$width / 2, this.$height - 150, 30 * scale, textures.red, 2),
             this.$createBird(this.$width / 2, this.$height - 150, 27 * scale, textures.chuck, 2),
+            this.$createBird(this.$width / 2, this.$height - 150, 18 * scale, textures.blue_1, 1),
+            this.$createBird(this.$width / 2, this.$height - 150, 18 * scale, textures.blue_2, 1),
+            this.$createBird(this.$width / 2, this.$height - 150, 18 * scale, textures.blue_3, 1),
+            this.$createBird(this.$width / 2, this.$height - 150, 54 * scale, textures.bomb, 2),
+            this.$createBird(this.$width / 2, this.$height - 150, 51 * scale, textures.matilda, 2),
+            this.$createBird(this.$width / 2, this.$height - 150, 72 * scale, textures.terence, 2),
         ];
 
         Composite.add(this.$world, initial);
-
-        // Defer heavier bodies until idle
-        requestIdleCallback?.(() => {
-            const rest = [
-                this.$createBird(this.$width / 2, this.$height - 150, 18 * scale, textures.blue_1, 1),
-                this.$createBird(this.$width / 2, this.$height - 150, 18 * scale, textures.blue_2, 1),
-                this.$createBird(this.$width / 2, this.$height - 150, 18 * scale, textures.blue_3, 1),
-                this.$createBird(this.$width / 2, this.$height - 150, 54 * scale, textures.bomb, 2),
-                this.$createBird(this.$width / 2, this.$height - 150, 51 * scale, textures.matilda, 2),
-                this.$createBird(this.$width / 2, this.$height - 150, 72 * scale, textures.terence, 2),
-            ];
-            Composite.add(this.$world, rest);
-        });
     }
 }
 

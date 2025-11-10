@@ -18,6 +18,12 @@ const { class: className, ...props } = Astro.props;
 
 <div class="w-0 h-[120px] md:h-[200px] -z-1"></div>
 
+<button
+	id="matter-close"
+	class="hidden fixed top-0 right-0 p-5 m-5 bg-gray-500/35 rounded-2xl z-5 cursor-pointer"
+	>X</button
+>
+
 <script>
 	import type { GameType } from "@/lib/game";
 
@@ -45,9 +51,25 @@ const { class: className, ...props } = Astro.props;
 		});
 	}
 
-	function attachInteractionBoost(container: HTMLElement) {
+	function attachInteractionBoost(
+		container: HTMLElement,
+		close: HTMLElement,
+	) {
+		container.style.zIndex = "";
+		close.style.display = "none";
+
 		const elevate = () => {
 			container.style.zIndex = "2";
+			close.style.display = "block";
+			close.addEventListener(
+				"click",
+				() => {
+					container.style.zIndex = "";
+					close.style.display = "none";
+					attachInteractionBoost(container, close);
+				},
+				{ once: true },
+			);
 		};
 
 		container.addEventListener("mousedown", elevate, { once: true });
@@ -56,22 +78,28 @@ const { class: className, ...props } = Astro.props;
 
 	document.addEventListener("astro:page-load", () => {
 		const container = document.getElementById("matter-container");
-		if (!container) return;
+		const close = document.getElementById("matter-close");
+		if (!container || !close) return;
 
 		initialized = false;
-		attachInteractionBoost(container);
+		attachInteractionBoost(container, close);
 		startGame(container);
 
 		// Intersection gating
 		const io = new IntersectionObserver(
 			(entries) => {
 				for (const entry of entries) {
-					if (entry.isIntersecting && initialized) {
+					if (entry.isIntersecting) {
+						if (gameInstance) {
+							gameInstance.resume();
+						} else {
+							startGame(container);
+						}
 					} else {
 						// Optionally pause if scrolled away
 						gameInstance?.pause();
 						container.style.zIndex = "";
-						attachInteractionBoost(container);
+						attachInteractionBoost(container, close);
 					}
 				}
 			},
@@ -79,10 +107,5 @@ const { class: className, ...props } = Astro.props;
 		);
 
 		io.observe(container);
-
-		// Fallback: start on first interaction if observer never fires
-		container.addEventListener("pointerdown", () => startGame(container), {
-			once: true,
-		});
 	});
 </script>
