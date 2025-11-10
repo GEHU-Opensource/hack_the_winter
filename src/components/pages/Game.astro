@@ -1,0 +1,60 @@
+---
+interface Props {
+	class?: string;
+}
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div
+	id="matter-container"
+	class:list={[
+		"hidden md:block",
+		"absolute bottom-0 left-0 right-0 w-full h-[200lvh]",
+		className,
+	]}
+	{...props}
+>
+</div>
+
+<div class="w-0 h-[200px] -z-1"></div>
+
+<script>
+	import Game from "@/lib/game";
+
+	async function initializeMatter() {
+		const container = document.getElementById(
+			"matter-container",
+		) as HTMLDivElement;
+
+		// Set z-index on first interaction
+		container.addEventListener(
+			"mousedown",
+			() => {
+				container.style.zIndex = "10";
+			},
+			{ once: true },
+		);
+
+		// mobile touch support
+		container.addEventListener(
+			"touchstart",
+			() => {
+				container.style.zIndex = "10";
+			},
+			{ once: true },
+		);
+
+		const game = new Game(container);
+
+		window.addEventListener("resize", () => {
+			game.resize();
+		});
+
+		game.run();
+	}
+
+	document.addEventListener("astro:page-load", () => {
+		initializeMatter();
+	});
+</script>

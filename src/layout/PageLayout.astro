@@ -10,27 +10,37 @@ export interface Props extends BaseProps {
 }
 
 const { class: className, bodyClass, ...props } = Astro.props;
+
+import Game from "@/components/pages/Game.astro";
 ---
 
-<BaseLayout
-	class:list={["mx-auto w-full md:max-w-4xl lg:max-w-5xl", bodyClass]}
-	{...props}
->
-	<Header class="flex-none p-4" transition:name="header" />
+<BaseLayout class:list={["", bodyClass]} {...props}>
+	<div class="w-full relative z-1">
+		<main
+			class:list={[
+				"flex flex-col px-2",
+				"mx-auto w-full md:max-w-4xl lg:max-w-5xl",
+			]}
+		>
+			<Header class="flex-none p-4" transition:name="header" />
 
-	<Navigation />
+			<Navigation />
 
-	<main
-		class:list={[
-			"flex-auto  px-4 py-8",
-			"flex flex-col gap-6 md:gap-8 lg:gap-10",
-			className,
-		]}
-	>
-		<slot />
-	</main>
+			<section
+				class:list={[
+					"flex-auto  px-4 py-8",
+					"flex flex-col gap-6 md:gap-8 lg:gap-10",
+					className,
+				]}
+			>
+				<slot />
+			</section>
 
-	<Footer class="flex-none p-4" transition:name="footer" />
+			<Footer class="flex-none p-4" transition:name="footer" />
+		</main>
+	</div>
+
+	<Game />
 </BaseLayout>
 
 <script>

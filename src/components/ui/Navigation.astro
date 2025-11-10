@@ -2,44 +2,44 @@
 const menus = [
 	{
 		title: "Home",
-		webm: "/animated/red.webm",
-		hevc: "/animated/red.mp4",
+		webm: "/assets/animated/red.webm",
+		hevc: "/assets/animated/red.mp4",
 		href: "/home/",
 	},
 	{
 		title: "Timeline",
-		webm: "/animated/chuck.webm",
-		hevc: "/animated/chuck.mp4",
+		webm: "/assets/animated/chuck.webm",
+		hevc: "/assets/animated/chuck.mp4",
 		href: "/timeline/",
 	},
 	{
 		title: "Rules",
-		webm: "/animated/blues.webm",
-		hevc: "/animated/blues.mp4",
+		webm: "/assets/animated/blues.webm",
+		hevc: "/assets/animated/blues.mp4",
 		href: "/rules/",
 	},
 	{
 		title: "FAQs",
-		webm: "/animated/stella.webm",
-		hevc: "/animated/stella.mp4",
+		webm: "/assets/animated/stella.webm",
+		hevc: "/assets/animated/stella.mp4",
 		href: "/faqs/",
 	},
 	{
 		title: "Sponsor",
-		webm: "/animated/leonard.webm",
-		hevc: "/animated/leonard.mp4",
+		webm: "/assets/animated/leonard.webm",
+		hevc: "/assets/animated/leonard.mp4",
 		href: "/sponsor/",
 	},
 	{
 		title: "Contact",
-		webm: "/animated/bomb.webm",
-		hevc: "/animated/bomb.mp4",
+		webm: "/assets/animated/bomb.webm",
+		hevc: "/assets/animated/bomb.mp4",
 		href: "/contact/",
 	},
 	{
 		title: "About",
-		webm: "/animated/ross.webm",
-		hevc: "/animated/ross.mp4",
+		webm: "/assets/animated/ross.webm",
+		hevc: "/assets/animated/ross.mp4",
 		href: "/about/",
 	},
 ];
@@ -49,7 +49,7 @@ function isCurrentPage(href: string) {
 }
 
 interface Props {
-	class: string;
+	class?: string;
 }
 
 const { class: className, ...props } = Astro.props;
