@@ -1,5 +1,5 @@
 ---
-const menus = [
+const items = [
 	{
 		title: "Home",
 		webm: "/assets/animated/red.webm",
@@ -53,6 +53,8 @@ interface Props {
 }
 
 const { class: className, ...props } = Astro.props;
+
+import NavigationItem from "./navigation-item.svelte";
 ---
 
 <nav
@@ -63,119 +65,12 @@ const { class: className, ...props } = Astro.props;
 	{...props}
 >
 	{
-		menus.map((menu) => (
-			<a
-				href={isCurrentPage(menu.href) ? null : menu.href}
-				class="flex flex-col align-middle items-center mb-8 hover:text-shadow-lg/50"
-			>
-				<video
-					muted
-					playsinline
-					autoplay
-					class="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 object-contain"
-					data-current={isCurrentPage(menu.href)}
-					autoplay={isCurrentPage(menu.href) ? true : undefined}
-				>
-					<source src={menu.hevc} type='video/mp4; codecs="hvc1"' />
-					<source src={menu.webm} type="video/webm" />
-					Your browser does not support the video tag.
-				</video>
-
-				<p
-					class:list={[
-						"text-lg md:text-xl lg:text-2xl xl:text-3xl",
-						"text-center font-angry tracking-wider text-shadow-md/50",
-						isCurrentPage(menu.href) ? "italic text-white/90 " : "",
-					]}
-				>
-					{menu.title}
-				</p>
-			</a>
+		items.map((item) => (
+			<NavigationItem
+				client:load
+				{item}
+				isCurrent={isCurrentPage(item.href)}
+			/>
 		))
 	}
 </nav>
-
-<script>
-	const primeVideo = (video: HTMLVideoElement) => {
-		// Force source selection after DOM swap/cloning (Safari/Firefox)
-		try {
-			video.load();
-		} catch {}
-
-		const isCurrent = video.dataset.current === "true";
-
-		const paintFirstFrame = () => {
-			try {
-				// Safari sometimes won't paint frame 0; seek a tiny offset
-				if (video.currentTime === 0) video.currentTime = 0.001;
-			} catch {}
-		};
-
-		if (isCurrent) {
-			const start = () => {
-				video.play().catch(() => {});
-			};
-			if (video.readyState >= 2) {
-				start();
-			} else {
-				video.addEventListener("loadeddata", start, { once: true });
-			}
-		} else {
-			const onMeta = () => {
-				paintFirstFrame();
-				video.pause();
-			};
-			if (video.readyState >= 1) {
-				onMeta();
-			} else {
-				video.addEventListener("loadedmetadata", onMeta, {
-					once: true,
-				});
-			}
-		}
-	};
-
-	const setupNavVideoHover = () => {
-		const links = document.querySelectorAll("nav a");
-		links.forEach((link) => {
-			const video = link.querySelector("video");
-			if (!(video instanceof HTMLVideoElement)) return;
-
-			primeVideo(video);
-
-			const paintFirstFrame = () => {
-				try {
-					if (video.currentTime === 0) video.currentTime = 0.001;
-				} catch {}
-			};
-
-			const play = () => {
-				video.loop = true;
-				if (video.readyState < 2) {
-					try {
-						video.load();
-					} catch {}
-				}
-				video.play().catch(() => {});
-			};
-			const pause = () => {
-				video.loop = false;
-				video.pause();
-				paintFirstFrame();
-			};
-
-			link.addEventListener("mouseenter", play);
-			link.addEventListener("mouseleave", pause);
-			// Accessibility: support keyboard navigation
-			link.addEventListener("focusin", play);
-			link.addEventListener("focusout", pause);
-		});
-	};
-
-	document.addEventListener("astro:after-swap", () => {
-		setupNavVideoHover();
-	});
-	document.addEventListener("DOMContentLoaded", () => {
-		setupNavVideoHover();
-	});
-</script>
