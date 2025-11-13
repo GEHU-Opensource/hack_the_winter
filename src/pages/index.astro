@@ -15,7 +15,7 @@ import Chuck from "@/assets/images/chuck/chuck.webp";
 import Matilda from "@/assets/images/matilda.webp";
 import Hal from "@/assets/images/hal.webp";
 import Bomb from "@/assets/images/bomb/bomb.webp";
-import Navigation from "@/components/ui/Navigation.astro";
+import NavigationPreloader from "@/components/ui/NavigationPreloader.astro";
 ---
 
 <BaseLayout>
@@ -150,7 +150,7 @@ import Navigation from "@/components/ui/Navigation.astro";
 	</main>
 
 	<!-- Invisible navigation to preload videos -->
-	<Navigation class="hidden" />
+	<NavigationPreloader />
 </BaseLayout>
 
 <script>

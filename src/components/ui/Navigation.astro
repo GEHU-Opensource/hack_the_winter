@@ -1,5 +1,5 @@
 ---
-const items = [
+export const navItems = [
 	{
 		title: "Home",
 		webm: "/assets/animated/red.webm",
@@ -65,7 +65,7 @@ import NavigationItem from "./navigation-item.svelte";
 	{...props}
 >
 	{
-		items.map((item) => (
+		navItems.map((item) => (
 			<NavigationItem
 				client:load
 				{item}

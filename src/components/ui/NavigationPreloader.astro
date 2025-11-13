@@ -1,0 +1,14 @@
+---
+import { navItems } from "./Navigation.astro";
+---
+
+<div class="hidden">
+	{
+		navItems.map((item) => (
+			<video preload="auto">
+				<source src={item.hevc} type={`video/mp4; codecs="hvc1"`} />
+				<source src={item.webm} type="video/webm" />
+			</video>
+		))
+	}
+</div>
