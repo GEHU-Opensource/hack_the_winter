@@ -1,4 +1,3 @@
-import { Game } from "./game";
+import { FooterGame } from "./footer_game";
 
-export default Game;
-export type { Game as GameType };
+export { FooterGame };

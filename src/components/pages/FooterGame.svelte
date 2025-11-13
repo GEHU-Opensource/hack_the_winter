@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Game from "@/lib/game";
+	import { FooterGame } from "@/lib/game";
 
 	let container: HTMLDivElement;
-	let gameInstance: Game;
+	let gameInstance: FooterGame;
 	let io: IntersectionObserver | null = null;
 	let resizeTimer: number | NodeJS.Timeout | undefined;
 
@@ -12,7 +12,7 @@
 		if (typeof window === "undefined") return;
 
 		// Initialize game
-		gameInstance = new Game(container);
+		gameInstance = new FooterGame(container);
 		gameInstance.start();
 
 		// Create IntersectionObserver only on client

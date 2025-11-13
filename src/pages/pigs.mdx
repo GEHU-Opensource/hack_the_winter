@@ -1,0 +1,30 @@
+---
+layout: "@/layout/MarkdownLayout.astro"
+title: "Bad Piggies Secret"
+bodyClass: "bg-black"
+---
+
+import { Image, ImageMap } from "@/components/helpers";
+
+import LeonardHappy from "@/assets/images/leonard_happy.png";
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-8">
+    <div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-green-400 font-angry">
+            Welcome to Bad Piggies!
+        </h1>
+    </div>
+    <div class="flex justify-center">
+        <Image
+            src={LeonardHappy}
+            alt="Leonard Pig"
+            class="w-64 h-auto md:w-80 lg:w-96 object-contain"
+        />
+    </div>
+</div>
+
+<iframe
+    src="/_game/index.html"
+    class="w-full aspect-2000/720"
+    loading="lazy"
+/>
