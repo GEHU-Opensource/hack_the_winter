@@ -2,8 +2,8 @@
 
 ## The Second Edition
 
-Made with Astro.js & Tailwind CSS
+Made with [Astro](https://astro.build/), [Svelte](https://svelte.dev) & [Tailwind CSS](https://tailwindcss.com)
 
-Designed in Affinity 3
+Designed in [Affinity](https://www.affinity.studio/)
 
-Hosted on Cloudflare Pages
+Hosted on [Cloudflare Pages](https://pages.cloudflare.com/)

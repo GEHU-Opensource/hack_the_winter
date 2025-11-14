@@ -73,3 +73,7 @@
 		{/if}
 	{/each}
 </div>
+
+<p class="mt-5 text-center text-white/75 font-light text-sm">
+	* Round 1 starts Dec 25th, 2025
+</p>
