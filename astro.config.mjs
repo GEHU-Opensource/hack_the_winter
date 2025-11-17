@@ -6,15 +6,22 @@ import mdx from "@astrojs/mdx";
 import lenis from "astro-lenis";
 import icon from "astro-icon";
 import svelte from "@astrojs/svelte";
+import playformCompress from "@playform/compress";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://hack.gehubhimtal.in/",
-	integrations: [mdx(), lenis(), icon(), svelte()],
-	vite: {
-		plugins: [tailwindcss()],
-	},
-	experimental: {
-		fonts,
-	},
+    site: "https://hack.gehubhimtal.in/",
+    integrations: [
+      mdx(),
+      lenis(),
+      icon(),
+      svelte(),
+      playformCompress({Image: false}),
+    ],
+    vite: {
+        plugins: [tailwindcss()],
+    },
+    experimental: {
+        fonts,
+    },
 });
