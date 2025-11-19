@@ -3,4 +3,5 @@ export default {
     description: "Hack The Winter 2025, Graphic Era Hill University, Bhimtal Campus",
     favicon: "/favicon.png",
     ogImage: "/og.png",
+    ogImageSquare: "/og-square.png",
 };
