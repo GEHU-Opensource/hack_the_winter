@@ -16,7 +16,7 @@ export default defineConfig({
 		lenis(),
 		icon(),
 		svelte(),
-		playformCompress({ Image: false, SVG: false }),
+		playformCompress({ Image: false }),
 	],
 	vite: {
 		plugins: [tailwindcss()],
