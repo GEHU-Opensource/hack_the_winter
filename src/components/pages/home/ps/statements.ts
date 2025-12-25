@@ -1,9 +1,52 @@
 interface Statement {
     title: string;
-    link: string;
+    link?: string;
+    description?: string;
+    isTheme?: boolean;
 }
 
-const currentStatements: Statement[] = [];
+const currentStatements: Statement[] = [
+    {
+        title: "Web / App",
+        description: "Any idea with a Web / App interface",
+        isTheme: true,
+    },
+    {
+        title: "Fintech",
+        description: "Financial technology solutions",
+        isTheme: true,
+    },
+    {
+        title: "AR / VR",
+        description: "Augmented & Virtual Reality innovations",
+        isTheme: true,
+    },
+    {
+        title: "Governance",
+        description: "Build anything for the Government",
+        isTheme: true,
+    },
+    {
+        title: "Web3 / Blockchain",
+        description: "Decentralized & blockchain solutions",
+        isTheme: true,
+    },
+    {
+        title: "AI / ML",
+        description: "Artificial Intelligence & Machine Learning",
+        isTheme: true,
+    },
+    {
+        title: "IoT & Automation",
+        description: "Internet of Things & automation solutions",
+        isTheme: true,
+    },
+    {
+        title: "Open Innovation",
+        description: "Any innovative idea outside the themes",
+        isTheme: true,
+    },
+];
 
 const pastStatements: Statement[] = [
     {
