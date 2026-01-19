@@ -37,6 +37,11 @@ export const currentStatements: Statement[] = [
         link: "https://www.overleaf.com/read/vmtfbmpgnmym#8ea592",
         openMode: "external",
     },
+    {
+        title: "IoT Themes",
+        link: "https://www.overleaf.com/read/fgfmkhwqfmzx#351da3",
+        openMode: "external",
+    },
 ];
 
 export const pastStatements: Statement[] = [
