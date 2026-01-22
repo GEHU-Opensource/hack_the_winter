@@ -15,6 +15,12 @@ import Chuck from "@/assets/images/chuck/chuck.webp";
 import Matilda from "@/assets/images/matilda.webp";
 import Hal from "@/assets/images/hal.webp";
 import Bomb from "@/assets/images/bomb/bomb.webp";
+import HackTour from "@/assets/images/Sponsors/HackTour1.png";
+import trusting_brain from "@/assets/images/Sponsors/trustingbrains.png";
+import aisaathi from "@/assets/images/Sponsors/aisaathi.png";
+import unstop from "@/assets/images/Sponsors/0.svg";
+import gfg from "@/assets/images/Sponsors/gfg.png";
+
 import NavigationPreloader from "@/components/ui/NavigationPreloader.astro";
 ---
 
@@ -104,13 +110,59 @@ import NavigationPreloader from "@/components/ui/NavigationPreloader.astro";
 		</AnimatedContainer>
 
 		<AnimatedContainer image={Hal} align="left">
-			<h2
-				class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-angry pb-4 text-center text-green-500"
-			>
-				Our Sponsors
-			</h2>
-			<p>Come join hands with us to make this event a grand success!</p>
-		</AnimatedContainer>
+	<h2
+		class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-angry pb-4 text-center text-green-500"
+	>
+		Our Sponsors
+	</h2>
+
+	<p class="text-center text-xl md:text-2xl mb-10 opacity-80">
+		Come join hands with us to make this event a grand success!
+	</p>
+
+	<!-- Sponsors Grid -->
+	<div class="flex flex-wrap justify-center items-center gap-10 px-6">
+		<div class="group">
+			<Image
+				src={unstop}
+				alt="unstop"
+				class="w-40 md:w-48 lg:w-52 transition-all duration-300 "
+			/>
+		</div>
+
+		<div class="group">
+			<Image
+				src={trusting_brain}
+				alt="Trusting Brains"
+				class="w-40 md:w-48 lg:w-52  transition-all duration-300 "
+			/>
+		</div>
+		<div class="group">
+			<Image
+				src={gfg}
+				alt="gfg"
+				class="w-40 md:w-48 lg:w-52  transition-all duration-300 "
+			/>
+		</div>
+		<div class="group">
+			<Image
+				src={HackTour}
+				alt="hacktour"
+				class="w-40 md:w-48 lg:w-52  transition-all duration-300 "
+			/>
+		</div>
+		<div class="group">
+			<Image
+				src={aisaathi}
+				alt="hacktour"
+				class="w-40 md:w-48 lg:w-52  transition-all duration-300 "
+			/>
+		</div>
+		
+	</div>
+</AnimatedContainer>
+
+
 
 		<AnimatedContainer image={Bomb} align="right">
 			<h2
