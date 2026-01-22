@@ -129,21 +129,25 @@
 				<!-- Statement Image -->
 				{@const statement = statements[currentIndex]}
 				<div class="p-[6%] w-full h-full">
-					<a
-						href={statement.link}
-						title={statement.title}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="shadow-lg"
-					>
-						<iframe
-							src={statement.link}
-							title={statement.title}
-							class="w-full h-full border-0 pointer-events-none bg-[#f9fbfd]"
-							loading="lazy"
-						></iframe>
-					</a>
-				</div>
+                  {#if statement.openMode === "iframe"}
+                    <iframe
+                      src={statement.link}
+                      title={statement.title}
+                      class="w-full h-full border-0 bg-[#f9fbfd]"
+                      loading="lazy"
+                    ></iframe>
+                  {:else}
+                    <a
+                      href={statement.link}
+                      title={statement.title}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full h-full flex items-center justify-center bg-[#f9fbfd] shadow-lg text-lg font-semibold text-gray-900"
+                    >
+                      Open “{statement.title}” in Overleaf ↗
+                    </a>
+                  {/if}
+                </div>
 			{/if}
 		{:else}
 			<div class="text-center text-white px-4">
