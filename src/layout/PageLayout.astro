@@ -12,7 +12,7 @@ export interface Props extends BaseProps {
 
 const {
 	class: className,
-	enableGame = false,
+	enableGame = true,
 	bodyClass,
 	...props
 } = Astro.props;
@@ -34,7 +34,7 @@ import FooterGame from "@/components/pages/FooterGame.svelte";
 
 			<section
 				class:list={[
-					"flex-auto  px-4 py-8",
+					"flex-auto px-4 py-8",
 					"flex flex-col gap-6 md:gap-8 lg:gap-10",
 					className,
 				]}
@@ -46,7 +46,7 @@ import FooterGame from "@/components/pages/FooterGame.svelte";
 		</main>
 	</div>
 
-	<FooterGame client:idle />
+	{enableGame && <FooterGame client:idle />}
 </BaseLayout>
 
 <script>

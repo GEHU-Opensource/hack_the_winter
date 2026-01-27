@@ -1,0 +1,103 @@
+---
+import PageLayout from "@/layout/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const certificates = await getCollection("certificates");
+    return certificates.map((certificate) => ({
+        params: { id: certificate.id },
+        props: { certificate },
+    }));
+}
+
+const { certificate } = Astro.props;
+
+const pageUrl = Astro.url.toString();
+const linkedInUrl = new URL("https://www.linkedin.com/profile/add");
+linkedInUrl.searchParams.set("startTask", "CERTIFICATION_NAME");
+linkedInUrl.searchParams.set("name", "Hack the Winter The Second Wave");
+linkedInUrl.searchParams.set("organizationName", "WeCode");
+linkedInUrl.searchParams.set("issueYear", "2026");
+linkedInUrl.searchParams.set("issueMonth", "1");
+linkedInUrl.searchParams.set("certUrl", pageUrl);
+linkedInUrl.searchParams.set("certId", certificate.id);
+---
+
+<PageLayout
+    title={`${certificate.data.name} - ${certificate.data.team}`}
+    description={`Certificate awarded to ${certificate.data.team} from ${certificate.data.college}.`}
+    class="certificate-page"
+    enableGame={false}
+>
+    <div>
+        <a
+            href="/certificate/"
+            class:list={[
+                "x-4 py-2 md:px-6 md:py-3 rounded-xl font-angry",
+                "text-normal md:text-xl lg:text-2xl xl:text-3xl",
+                "transition-all duration-300 transform",
+                "bg-white text-black shadow-inner",
+            ]}>Back</a
+        >
+    </div>
+
+    <section
+        id="certificate"
+        class="bg-white aspect-square md:aspect-[297/210]"
+    >
+    </section>
+
+    <div class="flex justify-center">
+        <a
+            class="inline-flex items-center gap-2 bg-[#0A66C2] hover:bg-[#084b94] text-white px-4 py-2 rounded-md font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/50"
+            href={linkedInUrl.toString()}
+            target="_blank"
+            rel="noreferrer"
+        >
+            <svg
+                class="w-4 h-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+            >
+                <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.026-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.369-1.852 3.602 0 4.268 2.37 4.268 5.455v6.288zM5.337 7.433c-1.144 0-2.069-.927-2.069-2.07 0-1.144.925-2.07 2.069-2.07s2.07.926 2.07 2.07c0 1.143-.926 2.07-2.07 2.07zM6.72 20.452H3.952V9h2.768v11.452z"
+                ></path>
+            </svg>
+            Add to LinkedIn
+        </a>
+    </div>
+
+    <p>Yes this is a flutter app.</p>
+</PageLayout>
+
+<script
+    is:inline
+    define:vars={{
+        name: certificate.data.name,
+        team: certificate.data.team,
+        college: certificate.data.college,
+        finalists: certificate.data.finalists,
+        position: certificate.data.position,
+    }}
+>
+    globalThis.name = name;
+    globalThis.team = team;
+    globalThis.college = college;
+    globalThis.finalists = finalists;
+    globalThis.position = position;
+</script>
+
+<script>
+    import { loadFlutter } from "@/lib/flutter_loader";
+
+    function initializeAll() {
+        const certificate = document.getElementById("certificate");
+        if (certificate) {
+            loadFlutter("/_certificate/web/", certificate);
+        }
+    }
+
+    document.addEventListener("astro:page-load", initializeAll);
+</script>

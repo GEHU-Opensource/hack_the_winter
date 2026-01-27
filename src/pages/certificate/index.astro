@@ -1,0 +1,28 @@
+---
+import MarkdownContent from "@/components/partials/MarkdownContent.astro";
+import PageLayout from "@/layout/PageLayout.astro";
+import { getCollection } from "astro:content";
+import Table from "@/components/pages/certificate/Table.svelte";
+
+const certificates = await getCollection("certificates");
+certificates.sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const data = certificates.map((certificate) => ({
+    id: certificate.id,
+    name: certificate.data.name,
+    team: certificate.data.team,
+    college: certificate.data.college,
+}));
+---
+
+<PageLayout
+    title="Certificates"
+    description="A list of my certificates and achievements."
+    enableGame={false}
+>
+    <MarkdownContent>
+        <h1>Certificates</h1>
+
+        <Table client:load {data} />
+    </MarkdownContent>
+</PageLayout>
